@@ -17,7 +17,7 @@ setup(
     ],
     install_requires=['setuptools'],
     zip_safe=True,
-    maintainer='your_name',
+    maintainer='Andy',
     maintainer_email='andy.younes@csie.am',
     description='Crazyflie leader-follower example',
     license='TODO',

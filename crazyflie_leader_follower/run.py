@@ -19,9 +19,11 @@ class LeaderNode(Node):
         self.cf_leader = swarm.allcfs.crazyflies[1]
         self.z = 0.5
         self.waypoints = [
-    
             np.array([1.0, 1.0, 0.5]),
-            np.array([2.0, 1.5, 0.5])
+            np.array([2.0, 1.5, 0.5]),
+            np.array([2.0, 0.0, 0.5]),
+            np.array([1.0, -1.0, 0.5]),
+            np.array([0.0, 0.0, 0.5])
         ]
         self.mission_thread = threading.Thread(target=self.run_mission)
         self.mission_thread.start()

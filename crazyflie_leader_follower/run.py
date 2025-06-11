@@ -1,5 +1,3 @@
-#!/usr/bin/env python3
-
 import rclpy
 from rclpy.node import Node
 from rclpy.executors import MultiThreadedExecutor
@@ -9,8 +7,8 @@ import numpy as np
 import threading
 import time
 
-SAFE_DISTANCE = 0.3  # meters
-OFFSET_VECTOR = np.array([-SAFE_DISTANCE, 0.0, 0.0])  # linear formation: follower behind leader
+SAFE_DISTANCE = 0.3  
+OFFSET_VECTOR = np.array([-SAFE_DISTANCE, 0.0, 0.0])  
 
 class LeaderNode(Node):
     def __init__(self, swarm):
@@ -36,7 +34,6 @@ class LeaderNode(Node):
         for i, wp in enumerate(self.waypoints):
             self.get_logger().info(f'Leader going to waypoint {i + 1}: {wp}')
 
-            # 🔼 Publish BEFORE moving
             msg = PoseStamped()
             msg.header.stamp = self.get_clock().now().to_msg()
             msg.pose.position.x = float(wp[0])
@@ -45,7 +42,7 @@ class LeaderNode(Node):
             msg.pose.orientation.w = 1.0
             self.publisher_.publish(msg)
 
-            time.sleep(0.5)  # allow follower to receive and act
+            time.sleep(0.5)  
 
             self.cf_leader.goTo(wp, yaw=0.0, duration=2.0)
             time.sleep(10.0)
@@ -56,7 +53,6 @@ class LeaderNode(Node):
         
         self.get_logger().info('Leader mission complete.')
 
-        # Send landing signal to follower
         msg = PoseStamped()
         msg.pose.position.z = -1.0  # Convention: z < 0 means "land"
         self.publisher_.publish(msg)

@@ -18,15 +18,13 @@ setup(
     install_requires=['setuptools'],
     zip_safe=True,
     maintainer='your_name',
-    maintainer_email='your_email@example.com',
+    maintainer_email='andy.younes@csie.am',
     description='Crazyflie leader-follower example',
     license='TODO',
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [
             'run = crazyflie_leader_follower.run:main',
-            'leader_node = crazyflie_leader_follower.leader_node:main',
-            'follower_node = crazyflie_leader_follower.follower_node:main',
         ],
     },
 )
